@@ -10,7 +10,6 @@ import theme from "../config/theme";
 
 const ModifiedGrommet = styled(Grommet)`
   display: grid;
-  /* grid-row-gap: 12px; */
   align-items: center;
 `;
 
@@ -48,7 +47,6 @@ function App() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Remote-User": "samuel",
         },
         body: JSON.stringify({ url: inputValue }),
       });
