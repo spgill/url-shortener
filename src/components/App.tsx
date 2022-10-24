@@ -1,7 +1,7 @@
 // vendor imports
 // import axios from "axios";
 import { Button, Grommet, TextInput, Card, CardBody } from "grommet";
-import { LinkDown } from "grommet-icons";
+import { LinkDown, Close } from "grommet-icons";
 import React, { useCallback } from "react";
 import styled from "styled-components";
 
@@ -48,6 +48,7 @@ function App() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Remote-User": "samuel",
         },
         body: JSON.stringify({ url: inputValue }),
       });
@@ -84,10 +85,14 @@ function App() {
             primary={true}
             label="Shorten"
             onClick={handleClickSubmit}
-            disabled={isPageLoading}
+            disabled={isPageLoading || inputValue.length === 0}
           />
 
-          <LinkDown />
+          {errorText ? (
+            <Close color="status-critical" />
+          ) : (
+            <LinkDown color="brand" />
+          )}
 
           {errorText ? (
             <p>{errorText}</p>

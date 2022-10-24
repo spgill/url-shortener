@@ -7,8 +7,7 @@ const globalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
 
-    background-color: #FAACA8;
-    background-image: linear-gradient(45deg, #FAACA8 0%, #DDD6F3 100%);
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
   }
 
   #root {

@@ -6,8 +6,8 @@ const theme: ThemeType = {
       family: "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     },
     colors: {
-      brand: "#F77E78",
-      focus: "#C7BCEB",
+      brand: "#86B09F",
+      focus: "#B0A386",
     },
   },
 };

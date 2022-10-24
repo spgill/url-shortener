@@ -1,2 +1,2 @@
 #! /bin/bash
-honcho start
+honcho start web
