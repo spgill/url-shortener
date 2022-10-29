@@ -24,6 +24,11 @@ const CardBodyGrid = styled(CardBody)`
   }
 `;
 
+const LogoImg = styled.img`
+  width: 96px;
+  margin: 0 auto 1rem;
+`;
+
 function App() {
   // State vars
   const [inputValue, setInputValue] = React.useState("");
@@ -71,6 +76,7 @@ function App() {
 
   return (
     <ModifiedGrommet theme={theme}>
+      <LogoImg src={`${process.env.PUBLIC_URL}/icon-512.png`} alt="" />
       <Card background="light-1">
         <CardBodyGrid pad="medium">
           <TextInput
