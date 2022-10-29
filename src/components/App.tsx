@@ -80,7 +80,7 @@ function App() {
       <Card background="light-1">
         <CardBodyGrid pad="medium">
           <TextInput
-            placeholder="URL goes here"
+            placeholder="Long URL"
             value={inputValue}
             onChange={handleInputChange}
             disabled={isPageLoading}
@@ -108,7 +108,7 @@ function App() {
                 disabled={isPageLoading}
               />
               <Button
-                label="Copy to Clipboard"
+                label="Copy to clipboard"
                 onClick={handleClickCopy}
                 disabled={isPageLoading || !outputValue}
               />
