@@ -1,4 +1,5 @@
 # stdlib imports
+import enum
 import hashlib
 import pathlib
 import re
@@ -64,13 +65,19 @@ def app_redirect(token: str):
         raise fastapi.HTTPException(status_code=404)
 
 
-class ShortenForm(BaseModel):
+class ShortenFormat(enum.Enum):
+    Normal = "normal"
+    Schemeless = "noscheme"
+    Token = "token"
+
+
+class ShortenRequestBody(BaseModel):
     url: str
-    token: typing.Optional[bool]
+    format: ShortenFormat = ShortenFormat.Normal
 
 
 @app.put("/api")
-def app_create(request: fastapi.Request, body: ShortenForm):
+def app_create(request: fastapi.Request, body: ShortenRequestBody):
     url = body.url.strip()
 
     # Owner starts as None. If auth is enabled, we will resolve this to a username.
@@ -127,10 +134,18 @@ def app_create(request: fastapi.Request, body: ShortenForm):
             creator=creator,
         ).save()
 
-    # If only the token is desired, return that
-    if body.token:
+    # Return only the token if token format is specified
+    if body.format is ShortenFormat.Token:
         return PlainTextResponse(token)
 
-    # Else return the full URL
+    # If schemeless format, return the url without a scheme
+    elif body.format is ShortenFormat.Schemeless:
+        return PlainTextResponse(
+            f"{config.externalAddressParsed.netloc or 'https'}/{token}"
+        )
+
+    # Else return the full URL with scheme
     else:
-        return PlainTextResponse(urllib.parse.urljoin(config.externalAddress, token))
+        return PlainTextResponse(
+            f"{config.externalAddressParsed.scheme}://{config.externalAddressParsed.netloc or 'https'}/{token}"
+        )

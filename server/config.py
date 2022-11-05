@@ -1,6 +1,6 @@
 # stdlib imports
 import os
-import typing
+import urllib.parse
 
 
 def _getOptional(name: str, default: str) -> str:
@@ -16,7 +16,13 @@ def _getRequired(name: str) -> str:
 
 alphabet = "abcdefghjkmmnpqrstuvwxyzABCDEFGHJKMMNPQRSTUVWXYZ2346789"
 
-externalAddress = _getOptional("SHORT_EXTERNAL_ADDRESS", "http://example.com")
+externalAddress = _getRequired("SHORT_EXTERNAL_ADDRESS")
+externalAddressParsed = urllib.parse.urlparse(externalAddress)
+if not urllib.parse.urlparse(externalAddress).netloc:
+    raise RuntimeError(
+        "'SHORT_EXTERNAL_ADDRESS' value must include a scheme (http:// or https://) and location (example.com or IP)"
+    )
+
 tokenPrefix = _getOptional("SHORT_TOKEN_PREFIX", "")
 tokenLength = int(_getOptional("SHORT_TOKEN_LENGTH", "4"))
 
