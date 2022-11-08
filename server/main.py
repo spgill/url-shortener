@@ -5,7 +5,6 @@ import pathlib
 import re
 import secrets
 import typing
-import urllib.parse
 
 # vendor imports
 import fastapi
@@ -23,16 +22,22 @@ from . import config, model
 # Create the FastAPI application
 app = fastapi.FastAPI()
 
-# Mount static file server for UI build
 staticDir = (pathlib.Path(__file__).parent / ".." / "build").resolve()
 staticUrl = "/build"
-app.mount(staticUrl, StaticFiles(directory=staticDir), "static")
 
-# Default route redirect to build
-@app.get("/")
-def app_default():
-    # return RedirectResponse("/build/index.html")
-    return FileResponse("build/index.html")
+# If the UI is enabled, mount the static directory and static redirect
+if config.uiEnabled:
+    print("UI is enabled...")
+    # Mount static file server for UI build
+    app.mount(staticUrl, StaticFiles(directory=staticDir), "static")
+
+    # Default route redirect to build
+    @app.get("/")
+    def app_default():
+        return FileResponse("build/index.html")
+
+else:
+    print("UI is disabled...")
 
 
 # On startup, connect to mongo database

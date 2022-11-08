@@ -34,4 +34,6 @@ authUserHeader = _getOptional("SHORT_AUTH_USER_HEADER", "Remote-User")
 authGroupsHeader = _getOptional("SHORT_AUTH_GROUPS_HEADER", "Remote-Groups")
 authRequiredGroup = _getOptional("SHORT_AUTH_GROUP", "")
 
+uiEnabled = _getOptional("SHORT_UI_ENABLED", "true").lower() == "true"
+
 print(f"Entropy level: {len(alphabet) ** tokenLength}")
