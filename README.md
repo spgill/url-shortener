@@ -1,5 +1,7 @@
 # <img src="/public/favicon.png?raw=true" style="height: 24px;" /> URL Shortener (API + UI)
 
+_A stateless and barebones URL shortening service (API+UI), leveraging MongoDB for storage_
+
 ## Installation
 
 You can build the docker image yourself by cloning this repo and running a standard Docker build command;
