@@ -20,7 +20,7 @@ docker pull docker.spgill.me/url-shortener:latest
 
 This application is completely stateless; all of its behavior can be completely configured via environment variables, and all of the stateful information (the shortened URLs) will be stored in a MongoDB database.
 
-This application runs on **TCP port 5000**.
+This application runs an HTTP/1.1 server on **TCP port 5000**.
 
 This application can read HTTP request headers from a reverse proxy to perform user and (optionally) group authentication. I personally run this app behind a Traefik reverse proxy with an Authelia middleware for authentication.
 
