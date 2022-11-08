@@ -1,4 +1,4 @@
-# <img src="/public/favicon.png?raw=true" style="height: 24px;" /> URL Shortener (API + UI)
+# <img src="/public/favicon.png?raw=true" style="height: 24px;" /> URL shortener service
 
 _A stateless and barebones URL shortening service (API+UI), leveraging MongoDB for storage_
 
@@ -12,7 +12,7 @@ docker build -t <TAG> .
 
 This build will automatically install node and python dependencies, and build the web UI from source.
 
-... or you can pull a pre-built image from my private Docker image repo at `docker.spgill.me` like so;
+... or you can pull a pre-built image (approx. 250 MiB) from my private Docker image repo at `docker.spgill.me` like so;
 
 ```bash
 docker pull docker.spgill.me/url-shortener:latest
@@ -20,11 +20,11 @@ docker pull docker.spgill.me/url-shortener:latest
 
 ## Usage
 
-This application is completely stateless; all of its behavior can be completely configured via environment variables, and all of the stateful information (the shortened URLs) will be stored in a MongoDB database.
+This application is completely stateless; all of its behavior can be configured completely via environment variables, and all of the stateful information (the shortened URLs) will be stored in a MongoDB database collection.
 
 This application runs an HTTP/1.1 server on **TCP port 5000**.
 
-This application can read HTTP request headers from a reverse proxy to perform user and (optionally) group authentication. I personally run this app behind a Traefik reverse proxy with an Authelia middleware for authentication.
+This application can read HTTP request headers from a reverse proxy to perform user and (optionally) group authentication. I personally run this app behind a [Traefik](https://traefik.io/traefik/) reverse proxy with an [Authelia](https://www.authelia.com/) middleware for authentication.
 
 Example `docker run` command;
 
