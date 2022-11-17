@@ -1,6 +1,8 @@
-# <img src="/public/favicon.png?raw=true" style="height: 24px;" /> URL shortener service
+# URL shortener service
 
 _A stateless and barebones URL shortening service (API+UI), leveraging MongoDB for storage_
+
+![screenshot of web UI](https://public.spgill.me/github/url-shortener-screenshot.png)
 
 ## Installation
 
